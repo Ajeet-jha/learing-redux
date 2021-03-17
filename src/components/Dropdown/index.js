@@ -1,21 +1,11 @@
 import React, { Component } from 'react'
 import Form from '../Form'
+import { connect } from 'react-redux'
 
 class Dropdwon extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selects : [
-                "Volvo",
-                "Saab",
-                "Mercedes",
-                "Audi"
-            ]
-        };
-      }
 
     render() {
-        const options = this.state.selects;
+        const options = this.props.selects;
         return (
             <div>
                 <label htmlFor="cars">Choose a car:</label>
@@ -31,4 +21,11 @@ class Dropdwon extends Component {
     }
 }
 
-export default Dropdwon
+const mapStateToProps = (state) => {
+    return{
+        selects : state.selects,
+        input: state.input
+    }
+}
+
+export default connect(mapStateToProps)(Dropdwon)
