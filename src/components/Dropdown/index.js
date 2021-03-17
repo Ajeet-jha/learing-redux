@@ -4,6 +4,12 @@ import { connect } from 'react-redux'
 
 class Dropdwon extends Component {
 
+    componentDidMount = () => {
+        this.props.dispatch({
+            type: "SHOW_LISTS"
+        });
+    }
+
     render() {
         const options = this.props.selects;
         return (
@@ -15,7 +21,7 @@ class Dropdwon extends Component {
                         return <option key= {index} value={value}>{option}</option>
                     })}
                 </select>
-                <Form options={options}/>
+                <Form />
             </div>
         )
     }
@@ -23,8 +29,7 @@ class Dropdwon extends Component {
 
 const mapStateToProps = (state) => {
     return{
-        selects : state.selects,
-        input: state.input
+        selects : state.selects
     }
 }
 

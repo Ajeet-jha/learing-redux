@@ -5,14 +5,18 @@ const initialState = {
         "Saab",
         "Mercedes",
         "Audi"
-    ],
-    input:""
+    ]
 };
 function reducer(state = initialState, action) {
 switch(action.type) {
   case SHOW_LISTS:
     return {
-        lists: state
+      selects: [...state.selects]
+    };
+  case ADD_ONE:
+    return {
+      selects:  [...state.selects, action.payload],
+      
     };
   default:
     return state;
