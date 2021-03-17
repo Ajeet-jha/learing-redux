@@ -1,4 +1,4 @@
-import { SHOW_LISTS, ADD_ONE, DELETE_LIST } from './actions';
+import { SHOW_LISTS, ADD_ONE, DELETE_LIST,DELETE_LISTS } from './actions';
 const initialState = {
   selects: [
     "Volvo",
@@ -24,7 +24,11 @@ function reducer(state = initialState, action) {
           return data != action.payload
         })
       };
-      
+    case DELETE_LISTS:
+      return {
+        selects: []
+      };
+
     default:
       return state;
   }
