@@ -1,45 +1,31 @@
 import React, { Component } from 'react'
+import Form from '../Form'
 
 class Dropdwon extends Component {
-    state = {
-        selects : [
-            "Volvo",
-            "Saab",
-            "Mercedes",
-            "Audi"
-        ],
-        input: ""
-    }
-
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name] : e.target.value
-        })
-    }
-
-    handleSubmit = e => {
-        e.preventDefault();
-        this.setState({
-            selects : [...this.state.selects, this.state.input],
-            input: ""
-        })
-    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            selects : [
+                "Volvo",
+                "Saab",
+                "Mercedes",
+                "Audi"
+            ]
+        };
+      }
 
     render() {
         const options = this.state.selects;
         return (
             <div>
-                <label for="cars">Choose a car:</label>
+                <label htmlFor="cars">Choose a car:</label>
                 <select name="cars">
                     {options && options.map((option, index)=>{
                         let value = option.toLowerCase()
                         return <option key= {index} value={value}>{option}</option>
                     })}
                 </select>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="input" onChange={this.handleChange} value={this.state.input} />
-                    <input type="submit" value="save"/>
-                </form>
+                <Form options={options}/>
             </div>
         )
     }
